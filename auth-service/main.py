@@ -28,3 +28,4 @@ def health_check():
             "login": "/api/auth/login"
         }
     }
+    
