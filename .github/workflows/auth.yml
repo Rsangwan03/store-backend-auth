@@ -25,11 +25,11 @@ jobs:
         name: auth-artifacts
         path: auth-service
 
-    - name: Upload order artifacts
+    - name: Upload auth artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: order-artifacts
-        path: orders-service
+        name: auth-artifacts
+        path: auth-service
 
     
 
@@ -40,8 +40,8 @@ jobs:
     - name: Download order artifacts
       uses: actions/download-artifact@v4
       with:
-        name: order-artifacts
-        path: ./order-artifacts
+        name: auth-artifacts
+        path: ./auth-artifacts
     
     - name: Add frontend VM to known hosts
       run: |
@@ -61,7 +61,7 @@ jobs:
         # Use SCP to transfer the artifacts to the backend VM via the frontend VM (jump host)
         sshpass -p "${{ secrets.PASSWORD }}" scp \
         -o StrictHostKeyChecking=no \
-        -o ProxyCommand="sshpass -p '${{ secrets.PASSWORD }}' ssh -o StrictHostKeyChecking=no -W %h:%p adminuser@${{ secrets.FRONTEND_VM_PUBLIC_IP }}" -r ./order-artifacts/* adminuser@${{ secrets.AUTH_HOST }}:/home/adminuser/auth
+        -o ProxyCommand="sshpass -p '${{ secrets.PASSWORD }}' ssh -o StrictHostKeyChecking=no -W %h:%p adminuser@${{ secrets.FRONTEND_VM_PUBLIC_IP }}" -r ./auth-artifacts/* adminuser@${{ secrets.AUTH_HOST }}:/home/adminuser/auth
     
     - name: Deploy to backend VM
       run: |
