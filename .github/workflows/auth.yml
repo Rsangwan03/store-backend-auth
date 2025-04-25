@@ -25,12 +25,6 @@ jobs:
         name: auth-artifacts
         path: auth-service
 
-    - name: Upload auth artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: auth-artifacts
-        path: auth-service
-
     
 
   deploy_orders:
