@@ -64,7 +64,7 @@ jobs:
         -o StrictHostKeyChecking=no \
         -o ProxyCommand="sshpass -p '${{ secrets.PASSWORD }}' ssh -o StrictHostKeyChecking=no -W %h:%p adminuser@${{ secrets.FRONTEND_VM_PUBLIC_IP }}" \
         adminuser@${{ secrets.AUTH_HOST }} << 'EOF'
-        cd /home/adminuser/orders
+        cd /home/adminuser/auth
         sudo apt update
         sudo apt install python3 python3-pip -y
         sudo apt install python3-venv -y
